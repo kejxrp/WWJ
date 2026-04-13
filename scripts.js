@@ -255,7 +255,7 @@
 
   function tagClusters(section) {
     var clusters = section.querySelectorAll(
-      ".grid > *, iframe, .locked-card, .btn-view-all, #album-stream-link, #subscribe-button, form > div, .md\\:max-w-3xl, .lg\\:w-2\\/5"
+      ".grid > *, iframe:not(.watch-embed-iframe), .locked-card, .btn-view-all, #album-stream-link, #subscribe-button, form > div, .md\\:max-w-3xl, .lg\\:w-2\\/5"
     );
     var idx = 0;
     Array.prototype.forEach.call(clusters, function (el) {
@@ -318,5 +318,93 @@
   updateScrollLinkedDrift();
   window.addEventListener("scroll", requestDriftUpdate, { passive: true });
   window.addEventListener("resize", requestDriftUpdate);
+})();
+
+/** Mailchimp: same audience, but post-json + JSONP so we never open the hosted “Malicide LLC” thank-you URL. */
+(function initMailchimpAjaxSubscribe() {
+  var form = document.getElementById("mc-embedded-subscribe-form");
+  var shell = document.getElementById("subscribe-form-shell");
+  if (!form || !shell) return;
+
+  var MC_POST_JSON =
+    "https://prxjek.us18.list-manage.com/subscribe/post-json?u=5129a329b96e5c9bebc77bbb0&id=9ded9b2183";
+
+  function showSuccessMessage() {
+    shell.innerHTML =
+      '<p class="text-center text-white text-3xl md:text-5xl font-serif text-shadow px-6 py-16 max-w-3xl mx-auto leading-tight">SEE YA IN 99 YRS GANG</p>';
+  }
+
+  function stripMailchimpMsg(html) {
+    var s = String(html || "Something went wrong.");
+    s = s.replace(/<[^>]+>/g, " ");
+    s = s.replace(/\s+/g, " ").trim();
+    s = s.replace(/^\d+\s*-\s*/, "");
+    return s;
+  }
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var emailEl = form.querySelector('[name="EMAIL"]');
+    var email = emailEl && String(emailEl.value || "").trim();
+    if (!email || !emailEl.checkValidity()) {
+      emailEl && emailEl.focus();
+      return;
+    }
+
+    var btn = document.getElementById("subscribe-button");
+    var prevVal = btn ? btn.value : "";
+    if (btn) {
+      btn.disabled = true;
+      btn.value = "…";
+    }
+
+    var errBox = form.querySelector(".mc-ajax-error");
+    if (errBox) errBox.remove();
+
+    if (typeof window.jQuery === "undefined") {
+      if (btn) {
+        btn.disabled = false;
+        btn.value = prevVal;
+      }
+      return;
+    }
+
+    window.jQuery.ajax({
+      type: "GET",
+      url: MC_POST_JSON,
+      data: window.jQuery(form).serialize(),
+      dataType: "jsonp",
+      jsonp: "c",
+      success: function (data) {
+        if (btn) {
+          btn.disabled = false;
+          btn.value = prevVal;
+        }
+        var rawMsg = stripMailchimpMsg(data && data.msg);
+        var low = rawMsg.toLowerCase();
+        var already =
+          low.indexOf("already subscribed") !== -1 ||
+          low.indexOf("already been subscribed") !== -1;
+        if ((data && data.result === "success") || already) {
+          showSuccessMessage();
+          return;
+        }
+        var p = document.createElement("p");
+        p.className = "mc-ajax-error text-center text-white text-sm mt-6 opacity-95";
+        p.textContent = rawMsg || "Something went wrong.";
+        form.appendChild(p);
+      },
+      error: function () {
+        if (btn) {
+          btn.disabled = false;
+          btn.value = prevVal;
+        }
+        var p = document.createElement("p");
+        p.className = "mc-ajax-error text-center text-white text-sm mt-6";
+        p.textContent = "Could not reach signup — check connection and try again.";
+        form.appendChild(p);
+      },
+    });
+  });
 })();
 
