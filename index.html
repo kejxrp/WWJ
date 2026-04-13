@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="bg-black scroll-smooth overflow-x-hidden">
 <head>
 <meta charset="utf-8"/>
@@ -39,12 +39,16 @@
 <!-- styles -->
 <link href="style.css" rel="stylesheet"/>
 <!-- /styles -->
-<!-- scripts -->
+<!-- scripts: CDN so GitHub Pages works even if vendor files aren’t in the repo (missing libs used to break scripts.js before the VHS intro could finish). -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.min.js"></script>
+<!-- Optional local copies (override CDN if you add these files next to index.html):
 <script src="jquery-3.6.0.min.js"></script>
 <script src="amplitude.min.js"></script>
+-->
 <!-- /scripts -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async="" src="js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-382KVQKXJB"></script>
 <script> window.dataLayer = window.dataLayer || []; function gtag() {dataLayer.push(arguments); } gtag("js", new Date()); gtag("config", "G-382KVQKXJB"); </script>
 <!-- /Global site tag (gtag.js) - Google Analytics -->
 </head>
