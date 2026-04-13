@@ -1920,7 +1920,7 @@ body.motion-ready section[id]:not(#intro):not(#audio-player).in-view .motion-clu
   filter: blur(0);
 }
 
-#watch iframe:hover,
+#watch .watch-embed-wrap:hover,
 .locked-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
@@ -1953,8 +1953,26 @@ body.motion-ready section[id]:not(#intro):not(#audio-player).in-view .motion-clu
   }
 }
 
-#watch iframe {
+/* Same footprint as o.html WATCH: `w-full` + `aspect-video` (16:9). Wrapper + absolute iframe
+   avoids broken iframe sizing; ratio matches Malicide page embed boxes. */
+#watch .watch-embed-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+#watch .watch-embed-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
   padding: 0;
+  margin: 0;
+  border: 2px solid #fff;
+  box-sizing: border-box;
   background: #000;
 }
 
