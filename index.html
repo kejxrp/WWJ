@@ -93,10 +93,10 @@
 <!-- progress bar -->
 <progress class="amplitude-song-played-progress h-0.5 w-full absolute top-0 appearance-none"></progress>
 <!-- /progress bar -->
-<!-- player content wrapper -->
-<div class="flex flex-row justify-center items-center gap-6 pt-2 pb-2 pl-4 pr-4">
+<!-- player content wrapper — same flex layout as o.html: prev/play/next left, track center flex, volume right -->
+<div class="flex flex-row justify-start md:justify-between content-center pt-2 pb-2 pl-4 pr-4">
 <!-- playback controls -->
-<div class="flex flex-row items-center">
+<div class="flex flex-row items-center mr-8 md:mr-0">
 <span class="amplitude-prev text-black md:hover:text-red hover:cursor-pointer transition-colors ease-linear duration-300"><svg class="" fill="currentColor" height="32" viewbox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M 8 5 L 8 27 L 10 27 L 10 16.5 L 10.4375 16.8125 L 23.4375 25.8125 L 25 26.90625 L 25 5.09375 L 23.4375 6.1875 L 10.4375 15.1875 L 10 15.5 L 10 5 Z M 23 8.90625 L 23 23.09375 L 12.75 16 Z"></path></svg></span><span class="amplitude-play-pause text-black ml-4 mr-4 md:hover:text-red hover:cursor-pointer transition-colors ease-linear duration-300"><span class="play-button"><svg class="" fill="currentColor" height="48" viewbox="0 0 32 32" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M 9 5.15625 L 9 26.84375 L 10.53125 25.84375 L 25.84375 16 L 10.53125 6.15625 Z M 11 8.8125 L 22.15625 16 L 11 23.1875 Z"></path></svg></span><span class="pause-button"><svg class="" fill="currentColor" height="48" viewbox="0 0 32 32" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M 10 6 L 10 26 L 12 26 L 12 6 Z M 20 6 L 20 26 L 22 26 L 22 6 Z"></path></svg></span></span><span class="amplitude-next text-black md:hover:text-red hover:cursor-pointer transition-colors ease-linear duration-300"><svg class="" fill="currentColor" height="32" viewbox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M 22 5 L 22 15.5 L 21.5625 15.1875 L 8.5625 6.1875 L 7 5.09375 L 7 26.90625 L 8.5625 25.8125 L 21.5625 16.8125 L 22 16.5 L 22 27 L 24 27 L 24 5 Z M 9 8.90625 L 19.25 16 L 9 23.09375 Z"></path></svg></span>
 </div>
 <!-- /playback controls -->
@@ -105,7 +105,7 @@
 <div class="hidden md:flex justify-center items-center mr-4 bg-black w-10 h-10">
 <img alt="PRXJEK" class="w-8 h-8 object-contain" src="jek.png"/>
 </div>
-<div class="md:w-auto md:mr-2">
+<div class="md:w-60 md:mr-4">
 <p class="song-name text-base" data-amplitude-song-info="name">
 </p>
 </div>
@@ -164,7 +164,7 @@
 <div class="container mx-auto">
 <h2 class="font-serif text-center text-white text-6xl md:text-8xl mb-12 drop-shadow">SHOP</h2>
 <p class="text-white text-xl text-center mb-16">Coming soon.</p>
-<p class="text-white text-center text-lg mb-12">This is an AI mockup just to give u guys an idea what we wanna cook up.</p>
+<p class="text-white text-center text-lg mb-12">These AI mockups juus to give u guys an idea what we wanna cook up.</p>
 <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-8">
 <div class="locked-card"><img alt="Mockup shirt 1" class="mb-6 drop-shadow-glow-small" src="shirt.png"/><span class="locked-label">LOCKED</span></div>
 <div class="locked-card"><img alt="Mockup shirt 2" class="mb-6 drop-shadow-glow-small" src="shirt2.png"/><span class="locked-label">LOCKED</span></div>
