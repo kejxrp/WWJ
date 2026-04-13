@@ -1,4 +1,16 @@
-Amplitude.init({
+/* Player init must not throw: missing jQuery/Amplitude on GitHub Pages would skip everything below
+   (including the VHS intro dismiss) and leave the intro “looping” forever. */
+(function initAmplitudePlayer() {
+  if (typeof window.Amplitude === "undefined" || typeof window.Amplitude.init !== "function") {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn(
+        "[PRXJEK] Amplitude not loaded — add jquery-3.6.0.min.js + amplitude.min.js next to index.html, or use CDN links in <head>."
+      );
+    }
+    return;
+  }
+  try {
+    window.Amplitude.init({
   songs: [
   {
     "name": "Yes I Can Actually Rap, You Fucking Idiot (Freestyle)",
@@ -82,7 +94,13 @@ Amplitude.init({
   }
 ],
   volume: 100
-});
+    });
+  } catch (err) {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn("[PRXJEK] Amplitude.init failed:", err);
+    }
+  }
+})();
 
 (function initVhsIntro() {
   var intro = document.getElementById("vhs-intro");
