@@ -763,9 +763,6 @@ video {
 .aspect-video {
   aspect-ratio: 16 / 9;
 }
-.aspect-square {
-  aspect-ratio: 1 / 1;
-}
 .h-auto {
   height: auto;
 }
@@ -1959,13 +1956,6 @@ body.motion-ready section[id]:not(#intro):not(#audio-player).in-view .motion-clu
 #watch iframe {
   padding: 0;
   background: #000;
-  /* Square embeds: width drives size; height follows 1:1 (overrides legacy width/height attrs). */
-  width: 100%;
-  height: auto;
-  max-width: min(100%, 90vh);
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
 }
 
 /* Outline-only buttons (remove inner box fill) */
