@@ -1,4 +1,4 @@
-﻿Amplitude.init({
+Amplitude.init({
   songs: [
   {
     "name": "Yes I Can Actually Rap, You Fucking Idiot (Freestyle)",
